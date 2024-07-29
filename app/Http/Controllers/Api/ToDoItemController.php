@@ -7,6 +7,8 @@ use App\Models\ToDoItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Log\Logger;
+use Illuminate\Support\Facades\Log;
 
 class ToDoItemController extends BaseController
 {
@@ -47,8 +49,11 @@ class ToDoItemController extends BaseController
             $toDoItem->title = $title;
             $toDoItem->category_name = $category_name;
             $toDoItem->save();
+            Log::info('User insert from '.$request->ip());
             return $this->sendResponse(new ToDoItemResource($toDoItem), 'ToDoItem created successfully.');
         }
+
+
     }
 
     public function show($id)

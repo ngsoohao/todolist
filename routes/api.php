@@ -23,12 +23,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-// Route::controller(RegisterController::class)->group(function(){
-//     Route::post('register', 'register');
-//     Route::post('login', 'login');
-// });
+Route::controller(RegisterController::class)->group(function(){
+    Route::post('register', 'register');
+    Route::post('login', 'login');
+});
         
-// Route::middleware('auth:sanctum')->group( function () {
-// });
+Route::middleware('auth:sanctum')->group( function () {
+    Route::resource('todoitem', ToDoItemController::class);
+    Route::post('add-item', [ToDoItemController::class, 'store']);
 
-Route::resource('todoitem', ToDoItemController::class);
+});
+
+

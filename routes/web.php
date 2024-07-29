@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ToDoItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('login');
 
+Route::resource('todoitem', ToDoItemController::class);
